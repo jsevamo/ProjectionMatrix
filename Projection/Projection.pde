@@ -2,11 +2,7 @@ float angle = 0;
 
 PVector [] points = new PVector[8];
 
-// Orthogonal Projection
-float [][] projection = {
-{1,0,0},
-{0,1,0}
-};
+
 
 void setup()
 {
@@ -59,6 +55,20 @@ void draw()
     float[][] rotatedM= matmul(rotationY, v);
     rotatedM = matmul(rotationX, rotatedM);
     rotatedM = matmul(rotationZ, rotatedM);
+    
+    PVector rotated = matrixToVec(rotatedM);
+    
+    float distance = 2;
+    float z = 1 / (distance - rotated.z);
+    
+    
+    // Orthogonal Projection just with ones
+    float [][] projection = {
+    {z,0,0},
+    {0,z,0}
+    };
+    
+    
     float [][] projected2dM = matmul(projection, matrixToVec(rotatedM));
     PVector projected2d = matrixToVec(projected2dM);
     projected2d.mult(200);
@@ -89,7 +99,7 @@ void draw()
     connect(i, i+4, projected);
   }
   
-  angle += 0.03;
+  angle += 0.02;
   
 }
 
