@@ -36,6 +36,7 @@ float[][] matmul(float[][] a, float[][] b)
   if(colsA != rowsB)
   {
     println("Columns of A must match columns of B");
+    println("A has " + colsA + " and be has " + rowsB);
     return null;
   }
   
